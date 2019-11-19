@@ -4,6 +4,7 @@ import UPArrow from './images/up.png';
 import DOWNArrow from './images/down.png';
 import LEFTArrow from './images/left.png';
 import RIGHTArrow from './images/right.png';
+import bgImagew  from "./images/crackrus.jpg";
 
 class App extends React.Component {
   constructor(props) {
@@ -39,7 +40,7 @@ class App extends React.Component {
               {[...Array(20)].map((data, index) => {
                 return <div className="d-flex" key={index}>
                   {[...Array(30)].map((sdata, sindex) => {
-                    return <div id={"box" + sindex} key={sindex} style={{ borderRadius: 5, border: "1px solid #000", height: 25, width: 10, backgroundColor: "transparent" }} className="spacingbox flex-fill">&nbsp;</div>
+                    return <div id={"box" + sindex} key={sindex} style={{ borderRadius: 5, border: "1px solid #000", height: 25, width: 10, backgroundSize : "25px 25px" ,backgroundImage: "url(" + bgImagew + ")", backgroundPosition: "center center" , backgroundRepeat: "no-repeat" }} className="spacingbox flex-fill">&nbsp;</div>
                   })}
                 </div>
               })}
