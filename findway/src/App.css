@@ -3,12 +3,11 @@
   min-height: 100vh;
 }
 
-.tabcontent {
-  display: table-cell;
-  vertical-align: middle;
+.container{
+  height: 100vh;
 }
 
-.container{
-  display: table;
-  width: 100%;
+.row{
+  align-items: center;
+  height: 100vh;
 }
