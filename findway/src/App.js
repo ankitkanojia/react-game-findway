@@ -4,7 +4,7 @@ import UPArrow from './images/up.png';
 import DOWNArrow from './images/down.png';
 import LEFTArrow from './images/left.png';
 import RIGHTArrow from './images/right.png';
-import bgImagew  from "./images/crackrus.jpg";
+import bgImagew  from "./images/block.jpg";
 
 class App extends React.Component {
   constructor(props) {
