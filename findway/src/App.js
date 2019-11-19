@@ -1,5 +1,9 @@
 import React from 'react';
 import './App.css';
+import UPArrow from './images/up.png';
+import DOWNArrow from './images/down.png';
+import LEFTArrow from './images/left.png';
+import RIGHTArrow from './images/right.png';
 
 function App() {
   return (
@@ -18,11 +22,11 @@ function App() {
           <div className="col-md-3">
             <div className="h-100">
               <div className="arrowbox">
-                <div style={{ textAlign: "center", width: "100%"}}>
-                  <button onclick="moveup()">UP</button><br /><br />
-                  <button onclick="moveleft()">LEFT</button> &nbsp; &nbsp; &nbsp;
-                  <button onclick="moveright()">RIGHT</button><br /><br />
-                  <button onclick="movedown()">DOWN</button>
+                <div style={{ textAlign: "center", width: "100%" }}>
+                  <img width="50" src={UPArrow} alt="UPArrow"  style={{marginTop : "10"}}/><br />
+                  <img width="50" src={LEFTArrow} alt="LEFTArrow"  />&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+                  <img width="50" src={RIGHTArrow} alt="RIGHTArrow" /><br />
+                  <img width="50" src={DOWNArrow} alt="DOWNArrow"  style={{marginTop : "10"}}/>
                 </div>
               </div>
             </div>
