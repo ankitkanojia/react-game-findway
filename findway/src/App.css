@@ -15,3 +15,12 @@
 .itemBoxImage{
   z-index: 2;
 }
+
+.startbtn{
+  background-color: rgb(180, 181, 8);
+  color: black;
+  height: 40px;
+  border-radius: 10px;
+  font-size: larger;
+  font-weight: bolder;
+}
