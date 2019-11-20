@@ -20,8 +20,8 @@ class App extends React.Component {
       rightCounter: 0,
       moveSize: 35,
       leftRightMove : 3.4,
-      blockPostition: [1, 11, 10, 14, 15, 16, 17, 20, 30, 40, 35, 39, 45, 55, 36, 46, 56, 65, 75, 84, 85, 94, 95],
-      cracktusostition: [23, 24, 25, 33, 34, 43, 44, 57, 58, 78, 79, 80, 82, 90, 92, 96],
+      blockPostitions: [1, 11, 10, 14, 15, 16, 17, 20, 30, 40, 35, 39, 45, 55, 36, 46, 56, 65, 75, 84, 85, 94, 95],
+      skullPositions: [23, 24, 25, 33, 34, 43, 44, 57, 58, 78, 79, 80, 82, 90, 92, 96],
       currentBlock : 309
     };
   }
@@ -92,9 +92,21 @@ class App extends React.Component {
       currentBlockNumber = currentBlockNumber + 22;
     }
 
-    if(this.state.blockPostition.indexOf(currentBlockNumber) > -1)
+    if(this.state.blockPostitions.indexOf(currentBlockNumber) > -1)
     {
         return;
+    }
+
+    if (this.state.skullPositions.indexOf(currentBlockNumber) > -1) {
+      this.setState({
+        controlledPosition: { x: 0, y: 0 },
+        leftCounter: 0,
+        upCounter: 0,
+        downCounter: 0,
+        rightCounter: 0,
+        currentBlock: 309
+      });
+      return;
     }
 
     this.setState({
@@ -119,11 +131,11 @@ class App extends React.Component {
                   {[...Array(22)].map((sdata, sindex) => {
                      counter = counter + 1;
                      let currentImage = "";
-                     if(this.state.blockPostition.indexOf(counter) > -1)
+                     if(this.state.blockPostitions.indexOf(counter) > -1)
                      {
                         currentImage = lockImage;
                      }
-                     if(this.state.cracktusostition.indexOf(counter) > -1)
+                     if(this.state.skullPositions.indexOf(counter) > -1)
                      {
                         currentImage = skullImage;
                      }
