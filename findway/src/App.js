@@ -4,8 +4,8 @@ import UPArrow from './images/up.png';
 import DOWNArrow from './images/down.png';
 import LEFTArrow from './images/left.png';
 import RIGHTArrow from './images/right.png';
-import blockImage from "./images/block.jpg";
-import crackrusImage from "./images/crackrus.jpg";
+import blockImage from "./images/lock.png";
+import crackrusImage from "./images/skull.jpg";
 import Draggable from "react-draggable";
 import jumpingman from "./images/farmer.jpg";
 
@@ -116,7 +116,7 @@ class App extends React.Component {
                      {
                         currentImage = crackrusImage;
                      }
-                    return <div id={"box" + sindex} key={sindex} style={{ borderRadius: 5, border: "1px solid #000", height: 35, width: 20, backgroundSize: "40px 35px", backgroundImage: "url(" + currentImage + ")", backgroundPosition: "center center", backgroundRepeat: "no-repeat" }} className="spacingbox flex-fill">&nbsp;</div>
+                    return <div id={"box" + sindex} key={sindex} style={{ borderRadius: 5, border: "1px solid #000", height: 35, width: 20, backgroundSize: "30px 25px", backgroundImage: "url(" + currentImage + ")", backgroundPosition: "center center", backgroundRepeat: "no-repeat" }} className="spacingbox flex-fill">&nbsp;</div>
                   })}
                 </div>
               })}
