@@ -6,6 +6,8 @@ import LEFTArrow from './images/left.png';
 import RIGHTArrow from './images/right.png';
 import blockImage from "./images/block.jpg";
 import crackrusImage from "./images/crackrus.jpg";
+import Draggable from "react-draggable";
+import jumpingman from "./images/farmer.jpg";
 
 class App extends React.Component {
   constructor(props) {
@@ -36,6 +38,10 @@ class App extends React.Component {
     }
   }
 
+  positionChange = (positionCType) =>{
+
+  }
+
   render() {
     let counter = 0;
     return (
@@ -60,15 +66,20 @@ class App extends React.Component {
                   })}
                 </div>
               })}
+              <Draggable>
+                <div className="itemBoxImage" style={{ borderRadius: 5, height: 24, width: 26 , border: "1px solid #FFF", backgroundSize: "25px 25px", backgroundImage: "url(" + jumpingman + ")", backgroundPosition: "center center", backgroundRepeat: "no-repeat", zIndex: "55", position: "absolute", bottom: 6, left: 6 }} ref="itemBoxImage" className="itemBox">
+                  &nbsp;
+                 </div>
+              </Draggable>
             </div>
             <div className="col-md-3">
               <div className="h-100">
                 <div className="arrowbox">
                   <div style={{ textAlign: "center", width: "100%" }}>
-                    <img width="50" src={UPArrow} alt="UPArrow" style={{ marginTop: "10" }} /><br />
-                    <img width="50" src={LEFTArrow} alt="LEFTArrow" />&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
-                  <img width="50" src={RIGHTArrow} alt="RIGHTArrow" /><br />
-                    <img width="50" src={DOWNArrow} alt="DOWNArrow" style={{ marginTop: "10" }} />
+                    <img onClick={() => this.positionChange("up")} width="50" src={UPArrow} alt="UPArrow" style={{ marginTop: "10" }} /><br />
+                    <img onClick={() => this.positionChange("left")} width="50" src={LEFTArrow} alt="LEFTArrow" />&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+                    <img onClick={() => this.positionChange("right")} width="50" src={RIGHTArrow} alt="RIGHTArrow" /><br />
+                    <img onClick={() => this.positionChange("down")} width="50" src={DOWNArrow} alt="DOWNArrow" style={{ marginTop: "10" }} />
                   </div>
                 </div>
               </div>
