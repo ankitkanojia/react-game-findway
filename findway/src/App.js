@@ -7,7 +7,7 @@ import RIGHTArrow from './images/right.png';
 import blockImage from "./images/lock.png";
 import crackrusImage from "./images/skull.jpg";
 import Draggable from "react-draggable";
-import jumpingman from "./images/farmer.jpg";
+import jumpingman from "./images/superman.png";
 
 class App extends React.Component {
   constructor(props) {
@@ -121,7 +121,7 @@ class App extends React.Component {
                 </div>
               })}
               <Draggable disabled={true} position={this.state.controlledPosition} >
-                <div className="itemBoxImage" style={{ borderRadius: 5, height: 32, width: 36 , border: "2px solid #FFF", backgroundSize: "25px 30px", backgroundImage: "url(" + jumpingman + ")", backgroundPosition: "center center", backgroundRepeat: "no-repeat", zIndex: "55", position: "absolute", bottom: 6, left: 6 }} ref="itemBoxImage" className="itemBox">
+                <div className="itemBoxImage" style={{ borderRadius: 5, height: 32, width: 36 , border: "2px solid red", backgroundSize: "25px 30px", backgroundImage: "url(" + jumpingman + ")", backgroundPosition: "center center", backgroundRepeat: "no-repeat", zIndex: "55", position: "absolute", bottom: 6, left: 6 }} ref="itemBoxImage" className="itemBox">
                   &nbsp;
                  </div>
               </Draggable>
