@@ -13,6 +13,13 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      controlledPosition : { x: 0, y: 0 },
+      leftCounter: 0,
+      upCounter: 0,
+      downCounter: 0,
+      rightCounter: 0,
+      moveSize: 35,
+      leftRightMove : 3.4,
       blockPostition: [1, 11, 10, 14, 15, 16, 17, 20, 30, 40, 35, 39, 45, 55, 36, 46, 56, 65, 75, 84, 85, 94, 95],
       cracktusostition: [23, 24, 25, 33, 34, 43, 44, 57, 58, 78, 79, 80, 82, 90, 92, 96]
     };
@@ -28,18 +35,65 @@ class App extends React.Component {
 
   handleKeyDown = (e) => {
     if (e.keyCode === 38) {
-      console.log("up");
+      this.positionChange("up");
     } else if (e.keyCode === 40) {
-      console.log("down");
+      this.positionChange("down");
     } else if (e.keyCode === 37) {
-      console.log("left");
+      this.positionChange("left");
     } else if (e.keyCode === 39) {
-      console.log("right");
+      this.positionChange("right");
     }
   }
 
-  positionChange = (positionCType) =>{
+  positionChange = async (type) => {
+    let currentLeftCounter = this.state.leftCounter;
+    if (currentLeftCounter === 0 && type.toLowerCase() === "left") {
+      return;
+    }
 
+    let currentRightCounter = this.state.rightCounter;
+    if (currentRightCounter === 21 && type.toLowerCase() === "right") {
+      return;
+    }
+
+    let currentUpCounter = this.state.upCounter;
+    if (currentUpCounter === 14 && type.toLowerCase() === "up") {
+      return;
+    }
+
+    let currentDownCounter = this.state.downCounter;
+    if (currentDownCounter === 0 && type.toLowerCase() === "down") {
+      return;
+    }
+
+    let xUpdate = this.state.controlledPosition.x;
+    let yUpdate = this.state.controlledPosition.y;
+    if (type.toLowerCase() === "up") {
+      currentUpCounter = currentUpCounter + 1;
+      currentDownCounter = currentDownCounter + 1;
+      yUpdate = yUpdate - this.state.moveSize;
+    } else if (type.toLowerCase() === "right") {
+      currentRightCounter = currentRightCounter + 1;
+      currentLeftCounter = currentLeftCounter + 1;
+      xUpdate = xUpdate + this.state.moveSize  + this.state.leftRightMove;
+
+    } else if (type.toLowerCase() === "left") {
+      currentLeftCounter = currentLeftCounter - 1;
+      currentRightCounter = currentRightCounter - 1;
+      xUpdate = xUpdate - this.state.moveSize - this.state.leftRightMove;
+    } else if (type.toLowerCase() === "down") {
+      currentUpCounter = currentUpCounter - 1;
+      currentDownCounter = currentDownCounter - 1;
+      yUpdate = yUpdate + this.state.moveSize;
+    }
+
+    this.setState({
+      controlledPosition: { x: xUpdate, y: yUpdate },
+      leftCounter: currentLeftCounter,
+      rightCounter: currentRightCounter,
+      upCounter: currentUpCounter,
+      downCounter: currentDownCounter
+    });
   }
 
   render() {
@@ -66,7 +120,7 @@ class App extends React.Component {
                   })}
                 </div>
               })}
-              <Draggable>
+              <Draggable disabled={true} position={this.state.controlledPosition} >
                 <div className="itemBoxImage" style={{ borderRadius: 5, height: 32, width: 36 , border: "2px solid #FFF", backgroundSize: "25px 30px", backgroundImage: "url(" + jumpingman + ")", backgroundPosition: "center center", backgroundRepeat: "no-repeat", zIndex: "55", position: "absolute", bottom: 6, left: 6 }} ref="itemBoxImage" className="itemBox">
                   &nbsp;
                  </div>
