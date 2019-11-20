@@ -4,8 +4,8 @@ import UPArrow from './images/up.png';
 import DOWNArrow from './images/down.png';
 import LEFTArrow from './images/left.png';
 import RIGHTArrow from './images/right.png';
-import blockImage from "./images/lock.png";
-import crackrusImage from "./images/skull.jpg";
+import lockImage from "./images/lock.png";
+import skullImage from "./images/skull.jpg";
 import Draggable from "react-draggable";
 import jumpingman from "./images/superman.png";
 
@@ -110,11 +110,11 @@ class App extends React.Component {
                      let currentImage = "";
                      if(this.state.blockPostition.indexOf(counter) > -1)
                      {
-                        currentImage = blockImage;
+                        currentImage = lockImage;
                      }
                      if(this.state.cracktusostition.indexOf(counter) > -1)
                      {
-                        currentImage = crackrusImage;
+                        currentImage = skullImage;
                      }
                     return <div id={"box" + sindex} key={sindex} style={{ borderRadius: 5, border: "1px solid #000", height: 35, width: 20, backgroundSize: "30px 25px", backgroundImage: "url(" + currentImage + ")", backgroundPosition: "center center", backgroundRepeat: "no-repeat" }} className="spacingbox flex-fill">&nbsp;</div>
                   })}
@@ -127,14 +127,26 @@ class App extends React.Component {
               </Draggable>
             </div>
             <div className="col-md-3">
-              <div className="h-100">
-                <div className="arrowbox">
-                  <div style={{ textAlign: "center", width: "100%" }}>
-                    <img onClick={() => this.positionChange("up")} width="50" src={UPArrow} alt="UPArrow" style={{ marginTop: "10" }} /><br />
-                    <img onClick={() => this.positionChange("left")} width="50" src={LEFTArrow} alt="LEFTArrow" />&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+              <div className="row">
+                <div className="col-md-12">
+                  <div className="h-100">
+                    <div className="arrowbox">
+                      <div style={{ textAlign: "center", width: "100%" }}>
+                        <img onClick={() => this.positionChange("up")} width="50" src={UPArrow} alt="UPArrow" style={{ marginTop: "10" }} /><br />
+                        <img onClick={() => this.positionChange("left")} width="50" src={LEFTArrow} alt="LEFTArrow" />&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
                     <img onClick={() => this.positionChange("right")} width="50" src={RIGHTArrow} alt="RIGHTArrow" /><br />
-                    <img onClick={() => this.positionChange("down")} width="50" src={DOWNArrow} alt="DOWNArrow" style={{ marginTop: "10" }} />
+                        <img onClick={() => this.positionChange("down")} width="50" src={DOWNArrow} alt="DOWNArrow" style={{ marginTop: "10" }} />
+                      </div>
+                    </div>
                   </div>
+                </div>
+                <div className="col-md-12 d-inline-block">
+                  <img width="30" src={lockImage} />
+                  <label style={{color : "#FFF", fontSize : 12, marginLeft :5}}>CAN NOT CROSS WHEN LOCK FOUND</label>
+                  <br />
+                  <br />
+                  <img width="30" src={skullImage} />
+                  <label style={{color : "#FFF", fontSize : 12, marginLeft :5}}>DO NOT TOUCH SKULL</label>
                 </div>
               </div>
             </div>
