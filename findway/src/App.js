@@ -49,9 +49,9 @@ class App extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col-md-9" style={{ backgroundColor: "#808080", padding: 5 }}>
-              {[...Array(20)].map((data, index) => {
+              {[...Array(15)].map((data, index) => {
                 return <div className="d-flex" key={index}>
-                  {[...Array(30)].map((sdata, sindex) => {
+                  {[...Array(22)].map((sdata, sindex) => {
                      counter = counter + 1;
                      let currentImage = "";
                      if(this.state.blockPostition.indexOf(counter) > -1)
@@ -62,12 +62,12 @@ class App extends React.Component {
                      {
                         currentImage = crackrusImage;
                      }
-                    return <div id={"box" + sindex} key={sindex} style={{ borderRadius: 5, border: "1px solid #000", height: 25, width: 10, backgroundSize: "25px 25px", backgroundImage: "url(" + currentImage + ")", backgroundPosition: "center center", backgroundRepeat: "no-repeat" }} className="spacingbox flex-fill">&nbsp;</div>
+                    return <div id={"box" + sindex} key={sindex} style={{ borderRadius: 5, border: "1px solid #000", height: 35, width: 20, backgroundSize: "40px 35px", backgroundImage: "url(" + currentImage + ")", backgroundPosition: "center center", backgroundRepeat: "no-repeat" }} className="spacingbox flex-fill">&nbsp;</div>
                   })}
                 </div>
               })}
               <Draggable>
-                <div className="itemBoxImage" style={{ borderRadius: 5, height: 24, width: 26 , border: "1px solid #FFF", backgroundSize: "25px 25px", backgroundImage: "url(" + jumpingman + ")", backgroundPosition: "center center", backgroundRepeat: "no-repeat", zIndex: "55", position: "absolute", bottom: 6, left: 6 }} ref="itemBoxImage" className="itemBox">
+                <div className="itemBoxImage" style={{ borderRadius: 5, height: 32, width: 36 , border: "2px solid #FFF", backgroundSize: "25px 30px", backgroundImage: "url(" + jumpingman + ")", backgroundPosition: "center center", backgroundRepeat: "no-repeat", zIndex: "55", position: "absolute", bottom: 6, left: 6 }} ref="itemBoxImage" className="itemBox">
                   &nbsp;
                  </div>
               </Draggable>
