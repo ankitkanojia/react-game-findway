@@ -21,7 +21,8 @@ class App extends React.Component {
       moveSize: 35,
       leftRightMove : 3.4,
       blockPostition: [1, 11, 10, 14, 15, 16, 17, 20, 30, 40, 35, 39, 45, 55, 36, 46, 56, 65, 75, 84, 85, 94, 95],
-      cracktusostition: [23, 24, 25, 33, 34, 43, 44, 57, 58, 78, 79, 80, 82, 90, 92, 96]
+      cracktusostition: [23, 24, 25, 33, 34, 43, 44, 57, 58, 78, 79, 80, 82, 90, 92, 96],
+      currentBlock : 309
     };
   }
 
@@ -68,23 +69,32 @@ class App extends React.Component {
 
     let xUpdate = this.state.controlledPosition.x;
     let yUpdate = this.state.controlledPosition.y;
+    let currentBlockNumber = this.state.currentBlock;
     if (type.toLowerCase() === "up") {
       currentUpCounter = currentUpCounter + 1;
       currentDownCounter = currentDownCounter + 1;
       yUpdate = yUpdate - this.state.moveSize;
+      currentBlockNumber = currentBlockNumber - 22;
     } else if (type.toLowerCase() === "right") {
       currentRightCounter = currentRightCounter + 1;
       currentLeftCounter = currentLeftCounter + 1;
       xUpdate = xUpdate + this.state.moveSize  + this.state.leftRightMove;
-
+      currentBlockNumber = currentBlockNumber + 1;
     } else if (type.toLowerCase() === "left") {
       currentLeftCounter = currentLeftCounter - 1;
       currentRightCounter = currentRightCounter - 1;
       xUpdate = xUpdate - this.state.moveSize - this.state.leftRightMove;
+      currentBlockNumber = currentBlockNumber - 1;
     } else if (type.toLowerCase() === "down") {
       currentUpCounter = currentUpCounter - 1;
       currentDownCounter = currentDownCounter - 1;
       yUpdate = yUpdate + this.state.moveSize;
+      currentBlockNumber = currentBlockNumber + 22;
+    }
+
+    if(this.state.blockPostition.indexOf(currentBlockNumber) > -1)
+    {
+        return;
     }
 
     this.setState({
@@ -92,7 +102,8 @@ class App extends React.Component {
       leftCounter: currentLeftCounter,
       rightCounter: currentRightCounter,
       upCounter: currentUpCounter,
-      downCounter: currentDownCounter
+      downCounter: currentDownCounter,
+      currentBlock : currentBlockNumber
     });
   }
 
@@ -116,7 +127,7 @@ class App extends React.Component {
                      {
                         currentImage = skullImage;
                      }
-                    return <div id={"box" + sindex} key={sindex} style={{ borderRadius: 5, border: "1px solid #000", height: 35, width: 20, backgroundSize: "30px 25px", backgroundImage: "url(" + currentImage + ")", backgroundPosition: "center center", backgroundRepeat: "no-repeat" }} className="spacingbox flex-fill">&nbsp;</div>
+                    return <div id={"box" + counter} key={counter} style={{ borderRadius: 5, border: "1px solid #000", height: 35, width: 20, backgroundSize: "30px 25px", backgroundImage: "url(" + currentImage + ")", backgroundPosition: "center center", backgroundRepeat: "no-repeat" }} className="spacingbox flex-fill">&nbsp;</div>
                   })}
                 </div>
               })}
