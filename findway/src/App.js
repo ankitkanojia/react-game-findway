@@ -15,8 +15,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mins : "2",
-      seconds : "59",
+      mins : "0",
+      seconds : "10",
       isGameStart : false,
       isGameFinish : false,
       isGameOver : false,
@@ -32,6 +32,23 @@ class App extends React.Component {
       currentBlock : 309,
       finishBlock : 22
     };
+  }
+
+  resetAll = () => {
+    this.setState({
+      mins : "2",
+      seconds : "59",
+      isGameStart : false,
+      isGameFinish : false,
+      isGameOver : false,
+      currentBlock : 309,
+      finishBlock : 22,
+      leftCounter: 0,
+      upCounter: 0,
+      downCounter: 0,
+      rightCounter: 0,
+      controlledPosition : { x: 0, y: 0 },
+    })
   }
 
   componentDidMount() {
@@ -230,7 +247,8 @@ class App extends React.Component {
                     <br />
                     <div className="text-center">
                         {!this.state.isGameStart && <button onClick={this.startGame} className="startbtn">START GAME</button> }
-                        {this.state.isGameStart && <button className="timerButton">{"0" + this.state.mins + " : " + this.state.seconds}</button>}
+                        {this.state.isGameStart && !this.state.isGameOver && <button className="timerButton">{"0" + this.state.mins + " : " + this.state.seconds}</button>}
+                        {this.state.isGameOver && <button onClick={this.resetAll} className="restartButton">RESTART GAME</button>}
                     </div>
                   </div>
                 </div>

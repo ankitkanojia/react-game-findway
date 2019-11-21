@@ -36,6 +36,16 @@
   font-weight: bolder;
 }
 
+.restartButton{
+  background-color: rgb(180, 181, 8);
+  border-color: rgb(180, 181, 8);
+  color: black;
+  height: 40px;
+  border-radius: 10px;
+  font-size: larger;
+  font-weight: bolder;
+}
+
 .Congratulations{
   width: 50%;
 }
