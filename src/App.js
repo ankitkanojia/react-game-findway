@@ -18,9 +18,9 @@ class App extends React.Component {
     this.state = {
       mins : "0",
       seconds : "10",
-      isGameStart : true,
+      isGameStart : false,
       isGameFinish : false,
-      isGameOver : true,
+      isGameOver : false,
       controlledPosition : { x: 0, y: 0 },
       leftCounter: 0,
       upCounter: 0,
