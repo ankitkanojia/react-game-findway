@@ -15,8 +15,11 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      mins : "2",
+      seconds : "59",
       isGameStart : false,
       isGameFinish : false,
+      isGameOver : false,
       controlledPosition : { x: 0, y: 0 },
       leftCounter: 0,
       upCounter: 0,
@@ -42,7 +45,40 @@ class App extends React.Component {
   startGame = () => {
     this.setState({
       isGameStart : true
+    },() => {
+       setInterval(this.timer, 1000);
     });
+  }
+
+  timer = () => {
+    let seconds = this.state.seconds;
+    let minute = this.state.mins;
+    if(seconds === "00")
+    {
+      seconds = "59";
+      minute = parseInt(minute) - 1;
+    }else {
+      seconds =  parseInt(seconds) - 1;
+    }
+
+    if(parseInt(seconds) < 10)
+    {
+      seconds = "0" + seconds
+    }
+
+    if (!this.state.isGameFinish && !this.state.isGameOver) {
+      if (minute === "0" && seconds === "00") {
+        this.setState({
+          seconds: seconds.toString(),
+          isGameOver: true
+        })
+      } else {
+        this.setState({
+          seconds: seconds.toString(),
+          mins: minute.toString()
+        })
+      }
+    }
   }
 
   handleKeyDown = (e) => {
@@ -194,6 +230,7 @@ class App extends React.Component {
                     <br />
                     <div className="text-center">
                         {!this.state.isGameStart && <button onClick={this.startGame} className="startbtn">START GAME</button> }
+                        {this.state.isGameStart && <button className="timerButton">{"0" + this.state.mins + " : " + this.state.seconds}</button>}
                     </div>
                   </div>
                 </div>
