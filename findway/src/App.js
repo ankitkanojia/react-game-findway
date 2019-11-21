@@ -7,7 +7,8 @@ import RIGHTArrow from './images/right.png';
 import lockImage from "./images/lock.png";
 import skullImage from "./images/skull.jpg";
 import Draggable from "react-draggable";
-import jumpingman from "./images/superman.png";
+import superman from "./images/superman.png";
+import finishIcon from "./images/finish.png";
 
 class App extends React.Component {
   constructor(props) {
@@ -22,7 +23,8 @@ class App extends React.Component {
       leftRightMove : 3.4,
       blockPostitions: [1, 11, 10, 14, 15, 16, 17, 20, 30, 40, 35, 39, 45, 55, 36, 46, 56, 65, 75, 84, 85, 94, 95],
       skullPositions: [23, 24, 25, 33, 34, 43, 44, 57, 58, 78, 79, 80, 82, 90, 92, 96],
-      currentBlock : 309
+      currentBlock : 309,
+      finishBlock : 22
     };
   }
 
@@ -135,7 +137,12 @@ class App extends React.Component {
                      {
                         currentImage = lockImage;
                      }
-                     if(this.state.skullPositions.indexOf(counter) > -1)
+                     else if(this.state.finishBlock === counter)
+                     {
+                        currentImage = finishIcon;
+                        return <div id={"box" + counter} key={counter} style={{ borderRadius: 5, border: "1px solid #000", height: 35, width: 20, backgroundSize: "35px 35px", backgroundImage: "url(" + currentImage + ")", backgroundPosition: "center center", backgroundRepeat: "no-repeat" }} className="spacingbox flex-fill">&nbsp;</div>
+                     }
+                     else if(this.state.skullPositions.indexOf(counter) > -1)
                      {
                         currentImage = skullImage;
                      }
@@ -144,7 +151,7 @@ class App extends React.Component {
                 </div>
               })}
               <Draggable disabled={true} position={this.state.controlledPosition} >
-                <div className="itemBoxImage" style={{ borderRadius: 5, height: 32, width: 36 , border: "2px solid red", backgroundSize: "25px 30px", backgroundImage: "url(" + jumpingman + ")", backgroundPosition: "center center", backgroundRepeat: "no-repeat", zIndex: "55", position: "absolute", bottom: 6, left: 6 }} ref="itemBoxImage" className="itemBox">
+                <div className="itemBoxImage" style={{ borderRadius: 5, height: 32, width: 36 , border: "2px solid red", backgroundSize: "25px 30px", backgroundImage: "url(" + superman + ")", backgroundPosition: "center center", backgroundRepeat: "no-repeat", zIndex: "55", position: "absolute", bottom: 6, left: 6 }} ref="itemBoxImage" className="itemBox">
                   &nbsp;
                  </div>
               </Draggable>
