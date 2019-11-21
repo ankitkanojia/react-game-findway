@@ -39,11 +39,11 @@ class App extends React.Component {
     document.removeEventListener("keydown", this.handleKeyDown);
   }
 
-  // startGame = () => {
-  //   this.setState({
-  //     isGameStart : true
-  //   });
-  // }
+  startGame = () => {
+    this.setState({
+      isGameStart : true
+    });
+  }
 
   handleKeyDown = (e) => {
     if (e.keyCode === 38) {
@@ -193,7 +193,7 @@ class App extends React.Component {
                     </div>
                     <br />
                     <div className="text-center">
-                      <button className="startbtn">START GAME</button>
+                        {!this.state.isGameStart && <button onClick={this.startGame} className="startbtn">START GAME</button> }
                     </div>
                   </div>
                 </div>
