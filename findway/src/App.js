@@ -10,6 +10,7 @@ import Draggable from "react-draggable";
 import superman from "./images/superman.png";
 import finishIcon from "./images/finish.png";
 import Congratulations from "./images/Congratulations.gif";
+import GameOver from "./images/gameover.jpg";
 
 class App extends React.Component {
   constructor(props) {
@@ -17,9 +18,9 @@ class App extends React.Component {
     this.state = {
       mins : "0",
       seconds : "10",
-      isGameStart : false,
+      isGameStart : true,
       isGameFinish : false,
-      isGameOver : false,
+      isGameOver : true,
       controlledPosition : { x: 0, y: 0 },
       leftCounter: 0,
       upCounter: 0,
@@ -203,7 +204,9 @@ class App extends React.Component {
         <div className="container">
           {this.state.isGameFinish  && <div className="row"><div className="col-md-12 text-center"><img className="Congratulations" src={Congratulations} /></div></div>}
           <div className="row">
-            {this.state.isGameOver && <div className="col-md-9" style={{ backgroundColor: "#808080", padding: 5 }}>&nbsp;</div>}
+            {this.state.isGameOver && <div className="col-md-9" style={{ padding: 5 }}>
+              <img width="100%" src={GameOver} />
+              </div>}
             {!this.state.isGameOver &&
               <div className="col-md-9" style={{ backgroundColor: "#808080", padding: 5 }}>
                 {[...Array(15)].map((data, index) => {
