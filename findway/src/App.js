@@ -9,11 +9,14 @@ import skullImage from "./images/skull.jpg";
 import Draggable from "react-draggable";
 import superman from "./images/superman.png";
 import finishIcon from "./images/finish.png";
+import Congratulations from "./images/Congratulations.gif";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isGameStart : false,
+      isGameFinish : false,
       controlledPosition : { x: 0, y: 0 },
       leftCounter: 0,
       upCounter: 0,
@@ -22,7 +25,7 @@ class App extends React.Component {
       moveSize: 35,
       leftRightMove : 3.4,
       blockPostitions: [1, 11, 10, 14, 15, 16, 17, 20, 30, 40, 35, 39, 45, 55, 36, 46, 56, 65, 75, 84, 85, 94, 95],
-      skullPositions: [23, 24, 25, 33, 34, 43, 44, 57, 58, 78, 79, 80, 82, 90, 92, 96],
+      skullPositions: [23, 24, 25, 33, 34, 44, 57, 58, 78, 79, 80, 82, 90, 92, 96],
       currentBlock : 309,
       finishBlock : 22
     };
@@ -35,6 +38,12 @@ class App extends React.Component {
   componentWillUnmount() {
     document.removeEventListener("keydown", this.handleKeyDown);
   }
+
+  // startGame = () => {
+  //   this.setState({
+  //     isGameStart : true
+  //   });
+  // }
 
   handleKeyDown = (e) => {
     if (e.keyCode === 38) {
@@ -49,6 +58,11 @@ class App extends React.Component {
   }
 
   positionChange = async (type) => {
+    if(!this.state.isGameStart)
+    {
+        return;
+    }
+
     let currentLeftCounter = this.state.leftCounter;
     if (currentLeftCounter === 0 && type.toLowerCase() === "left") {
       return;
@@ -111,6 +125,14 @@ class App extends React.Component {
       return;
     }
 
+    if(currentBlockNumber === this.state.finishBlock)
+    {
+      this.setState({
+        isGameFinish : true
+      });
+      return;
+    }
+
     this.setState({
       controlledPosition: { x: xUpdate, y: yUpdate },
       leftCounter: currentLeftCounter,
@@ -126,6 +148,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="container">
+          {this.state.isGameFinish && <div className="row"><div className="col-md-12 text-center"><img className="Congratulations" src={Congratulations} /></div></div>}
           <div className="row">
             <div className="col-md-9" style={{ backgroundColor: "#808080", padding: 5 }}>
               {[...Array(15)].map((data, index) => {
