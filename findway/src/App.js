@@ -201,37 +201,37 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="container">
-          {this.state.isGameFinish && <div className="row"><div className="col-md-12 text-center"><img className="Congratulations" src={Congratulations} /></div></div>}
+          {this.state.isGameFinish  && <div className="row"><div className="col-md-12 text-center"><img className="Congratulations" src={Congratulations} /></div></div>}
           <div className="row">
-            <div className="col-md-9" style={{ backgroundColor: "#808080", padding: 5 }}>
-              {[...Array(15)].map((data, index) => {
-                return <div className="d-flex" key={index}>
-                  {[...Array(22)].map((sdata, sindex) => {
-                     counter = counter + 1;
-                     let currentImage = "";
-                     if(this.state.blockPostitions.indexOf(counter) > -1)
-                     {
+            {this.state.isGameOver && <div className="col-md-9" style={{ backgroundColor: "#808080", padding: 5 }}>&nbsp;</div>}
+            {!this.state.isGameOver &&
+              <div className="col-md-9" style={{ backgroundColor: "#808080", padding: 5 }}>
+                {[...Array(15)].map((data, index) => {
+                  return <div className="d-flex" key={index}>
+                    {[...Array(22)].map((sdata, sindex) => {
+                      counter = counter + 1;
+                      let currentImage = "";
+                      if (this.state.blockPostitions.indexOf(counter) > -1) {
                         currentImage = lockImage;
-                     }
-                     else if(this.state.finishBlock === counter)
-                     {
+                      }
+                      else if (this.state.finishBlock === counter) {
                         currentImage = finishIcon;
                         return <div id={"box" + counter} key={counter} style={{ borderRadius: 5, border: "1px solid #000", height: 35, width: 20, backgroundSize: "35px 35px", backgroundImage: "url(" + currentImage + ")", backgroundPosition: "center center", backgroundRepeat: "no-repeat" }} className="spacingbox flex-fill">&nbsp;</div>
-                     }
-                     else if(this.state.skullPositions.indexOf(counter) > -1)
-                     {
+                      }
+                      else if (this.state.skullPositions.indexOf(counter) > -1) {
                         currentImage = skullImage;
-                     }
-                    return <div id={"box" + counter} key={counter} style={{ borderRadius: 5, border: "1px solid #000", height: 35, width: 20, backgroundSize: "30px 25px", backgroundImage: "url(" + currentImage + ")", backgroundPosition: "center center", backgroundRepeat: "no-repeat" }} className="spacingbox flex-fill">&nbsp;</div>
-                  })}
-                </div>
-              })}
-              <Draggable disabled={true} position={this.state.controlledPosition} >
-                <div className="itemBoxImage" style={{ borderRadius: 5, height: 32, width: 36 , border: "2px solid red", backgroundSize: "25px 30px", backgroundImage: "url(" + superman + ")", backgroundPosition: "center center", backgroundRepeat: "no-repeat", zIndex: "55", position: "absolute", bottom: 6, left: 6 }} ref="itemBoxImage" className="itemBox">
-                  &nbsp;
+                      }
+                      return <div id={"box" + counter} key={counter} style={{ borderRadius: 5, border: "1px solid #000", height: 35, width: 20, backgroundSize: "30px 25px", backgroundImage: "url(" + currentImage + ")", backgroundPosition: "center center", backgroundRepeat: "no-repeat" }} className="spacingbox flex-fill">&nbsp;</div>
+                    })}
+                  </div>
+                })}
+                <Draggable disabled={true} position={this.state.controlledPosition} >
+                  <div className="itemBoxImage" style={{ borderRadius: 5, height: 32, width: 36, border: "2px solid red", backgroundSize: "25px 30px", backgroundImage: "url(" + superman + ")", backgroundPosition: "center center", backgroundRepeat: "no-repeat", zIndex: "55", position: "absolute", bottom: 6, left: 6 }} ref="itemBoxImage" className="itemBox">
+                    &nbsp;
                  </div>
-              </Draggable>
-            </div>
+                </Draggable>
+              </div>
+            }
             <div className="col-md-3">
               <div className="row">
                 <div className="col-md-12">
