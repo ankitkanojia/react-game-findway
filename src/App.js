@@ -18,7 +18,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mins: "5",
+      mins: "3",
       seconds: "10",
       isGameStart: false,
       isGameFinish: false,
@@ -208,7 +208,7 @@ class App extends React.Component {
             {this.state.isGameFinish && <div className="col-md-12 text-center"><img className="Congratulations" alt="Congratulations" src={Congratulations} /></div>}
             <div className="col-md-8 text-center d-flex justify-content-center align-items-center pink">
               {!this.state.isGameOver &&
-                <div ref="board" className="w-100" style={{ backgroundColor: "#808080" , borderRadius : 5 , position : "relative" }}>
+                <div ref="board" className="text-center" style={{ width : "730px", backgroundColor: "#808080" , borderRadius : 5 , position : "relative" }}>
                   {[...Array(15)].map((data, index) => {
                     return <div className="d-flex" key={index}>
                       {[...Array(22)].map((sdata, sindex) => {
@@ -228,11 +228,11 @@ class App extends React.Component {
                       })}
                     </div>
                   })}
-                  <Draggable disabled={true} position={this.state.controlledPosition} >
-                    <div className="itemBoxImage" ref="itemBoxImage" style={{width  : this.state.leftRightMove}}>
-                      &nbsp;
-                 </div>
-                  </Draggable>
+                    {this.state.isGameStart && <Draggable disabled={true} position={this.state.controlledPosition} >
+                      <div className="itemBoxImage" ref="itemBoxImage" style={{width  : this.state.leftRightMove}}>
+                          &nbsp;
+                        </div>
+                  </Draggable>}
                 </div>
               }
             </div>
