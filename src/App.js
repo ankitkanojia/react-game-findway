@@ -17,8 +17,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mins: "3",
-      seconds: "10",
+      mins: "2",
+      seconds: "59",
       isGameStart: false,
       isGameFinish: false,
       isGameOver: false,
@@ -51,6 +51,7 @@ class App extends React.Component {
       downCounter: 0,
       rightCounter: 0,
       controlledPosition: { x: 0, y: 0 },
+      rotate : 0
     })
   }
 
@@ -215,9 +216,9 @@ class App extends React.Component {
       <div className="App">
         <div className="container">
           <div className="row" ref="gamerow">
-            {this.state.isGameFinish && <div className="col-md-12 text-center"><img className="Congratulations" alt="Congratulations" src={Congratulations} /></div>}
-            <div className="col-md-8 text-center d-flex justify-content-center align-items-center pink">
-              {!this.state.isGameOver &&
+            {this.state.isGameFinish && <div className="col-md-8 text-center d-flex justify-content-center align-items-center pink"><img className="Congratulations" alt="Congratulations" src={Congratulations} /></div>}
+            {!this.state.isGameOver && !this.state.isGameFinish && 
+              <div className="col-md-8 text-center d-flex justify-content-center align-items-center pink">
                 <div ref="board" className="text-center" style={{ width : "730px", backgroundColor: "#808080" , borderRadius : 5 , position : "relative" }}>
                   {[...Array(15)].map((data, index) => {
                     return <div className="d-flex" key={index}>
@@ -240,12 +241,12 @@ class App extends React.Component {
                   })}
                     {this.state.isGameStart && <Draggable disabled={true} position={this.state.controlledPosition} >
                       <div className="dragBox" style={{width  : this.state.leftRightMove}}>
-                         <div className="itemBoxImage"  style={{transform: "rotate(" + this.state.rotate + "deg)",width  : this.state.leftRightMove}}></div>
+                         <div className="itemBoxImage"  style={{transform: "rotate(" + this.state.rotate + "deg)" ,width  : this.state.leftRightMove}}></div>
                       </div>
                   </Draggable>}
                 </div>
-              }
-            </div>
+              </div>
+            }
             <div className="col-md-4 purple d-flex" style={{paddingTop : this.state.paddingSize , paddingBottom : this.state.paddingSize}}>
               <div class="row">
                 <div className="d-flex col-12 justify-content-center align-items-start h-75">
@@ -261,8 +262,8 @@ class App extends React.Component {
                     <br />
                     <div className="text-center">
                       {!this.state.isGameStart && <button onClick={this.startGame} className="startbtn">START GAME</button>}
-                      {this.state.isGameStart && !this.state.isGameOver && <button className="timerButton">{"0" + this.state.mins + " : " + this.state.seconds}</button>}
-                      {this.state.isGameOver && <button onClick={this.resetAll} className="restartButton">RESTART GAME</button>}
+                      {this.state.isGameStart && !this.state.isGameFinish && !this.state.isGameOver && <button className="timerButton">{"0" + this.state.mins + " : " + this.state.seconds}</button>}
+                      {(this.state.isGameOver || this.state.isGameFinish) && <button onClick={this.resetAll} className="restartButton">RESTART GAME</button>}
                     </div>
                   </div>
                 </div>
