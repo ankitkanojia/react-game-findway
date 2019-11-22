@@ -20,19 +20,27 @@
   height: 100vh;
 }
 
-.itemBoxImage{
+.dragBox{
   z-index: 2;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   height: 35px;
   /* width:33px; */
-  border: 2px solid red;
-  background-size: 25px 30px;
-  background-image: url('./images/superman.png');
-  background-position: center center;
-  background-repeat: no-repeat;
+  /* border: 2px solid red; */
+  /* background-size: 25px 30px; */
+  /* background-image: url('./images/superman.png'); */
+  /* background-position: center center; */
+  /* background-repeat: no-repeat; */
   position: absolute;
   bottom: 0;
   /*left: 2px; */
+}
+
+.itemBoxImage{
+  height: 35px;
+  background-size: 70px 31px;
+  background-image: url('./images/car.png'); 
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 .startbtn{

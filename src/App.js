@@ -34,7 +34,8 @@ class App extends React.Component {
       skullPositions: [23, 24, 25, 33, 34, 44, 57, 58, 78, 79, 80, 82, 90, 92, 96],
       currentBlock: 309,
       finishBlock: 22,
-      paddingSize : 0
+      paddingSize : 0,
+      rotate : 0
     };
   }
 
@@ -144,26 +145,31 @@ class App extends React.Component {
     let xUpdate = this.state.controlledPosition.x;
     let yUpdate = this.state.controlledPosition.y;
     let currentBlockNumber = this.state.currentBlock;
+    let currentRotate = this.state.rotate;
     if (type.toLowerCase() === "up") {
       currentUpCounter = currentUpCounter + 1;
       currentDownCounter = currentDownCounter + 1;
       yUpdate = yUpdate - this.state.topDownMove;
       currentBlockNumber = currentBlockNumber - 22;
+      currentRotate = 0;
     } else if (type.toLowerCase() === "right") {
       currentRightCounter = currentRightCounter + 1;
       currentLeftCounter = currentLeftCounter + 1;
       xUpdate = xUpdate + this.state.leftRightMove;
       currentBlockNumber = currentBlockNumber + 1;
+      currentRotate = 90;
     } else if (type.toLowerCase() === "left") {
       currentLeftCounter = currentLeftCounter - 1;
       currentRightCounter = currentRightCounter - 1;
       xUpdate = xUpdate - this.state.leftRightMove;
       currentBlockNumber = currentBlockNumber - 1;
+      currentRotate = -90;
     } else if (type.toLowerCase() === "down") {
       currentUpCounter = currentUpCounter - 1;
       currentDownCounter = currentDownCounter - 1;
       yUpdate = yUpdate + this.state.topDownMove;
       currentBlockNumber = currentBlockNumber + 22;
+      currentRotate = 180;
     }
 
     if (this.state.blockPostitions.indexOf(currentBlockNumber) > -1) {
@@ -177,7 +183,8 @@ class App extends React.Component {
         upCounter: 0,
         downCounter: 0,
         rightCounter: 0,
-        currentBlock: 309
+        currentBlock: 309,
+        rotate : 0
       });
       return;
     }
@@ -190,12 +197,16 @@ class App extends React.Component {
     }
 
     this.setState({
-      controlledPosition: { x: xUpdate, y: yUpdate },
-      leftCounter: currentLeftCounter,
-      rightCounter: currentRightCounter,
-      upCounter: currentUpCounter,
-      downCounter: currentDownCounter,
-      currentBlock: currentBlockNumber
+      rotate: currentRotate
+    }, () => {
+      this.setState({
+        controlledPosition: { x: xUpdate, y: yUpdate },
+        leftCounter: currentLeftCounter,
+        rightCounter: currentRightCounter,
+        upCounter: currentUpCounter,
+        downCounter: currentDownCounter,
+        currentBlock: currentBlockNumber
+      });
     });
   }
 
@@ -229,9 +240,9 @@ class App extends React.Component {
                     </div>
                   })}
                     {this.state.isGameStart && <Draggable disabled={true} position={this.state.controlledPosition} >
-                      <div className="itemBoxImage" ref="itemBoxImage" style={{width  : this.state.leftRightMove}}>
-                          &nbsp;
-                        </div>
+                      <div className="dragBox" style={{width  : this.state.leftRightMove}}>
+                         <div className="itemBoxImage"  style={{transform: "rotate(" + this.state.rotate + "deg)",width  : this.state.leftRightMove}}></div>
+                      </div>
                   </Draggable>}
                 </div>
               }
