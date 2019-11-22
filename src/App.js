@@ -11,6 +11,7 @@ import superman from "./images/superman.png";
 import finishIcon from "./images/finish.png";
 import Congratulations from "./images/Congratulations.gif";
 import GameOver from "./images/gameover.jpg";
+import Directional from "./images/direction.png";
 
 class App extends React.Component {
   constructor(props) {
@@ -39,7 +40,6 @@ class App extends React.Component {
     this.setState({
       mins : "2",
       seconds : "59",
-      isGameStart : false,
       isGameFinish : false,
       isGameOver : false,
       currentBlock : 309,
@@ -256,6 +256,9 @@ class App extends React.Component {
                   </div>
                 </div>
                 <div className="col-md-12 d-inline-block">
+                  <img width="70" src={Directional} />
+                  <label style={{color : "#FFF", fontSize : 12, marginLeft :5}}>FOR MOVE</label>
+                  <br />
                   <img width="30" src={lockImage} />
                   <label style={{color : "#FFF", fontSize : 12, marginLeft :5}}>CAN NOT CROSS WHEN LOCK FOUND</label>
                   <br />
