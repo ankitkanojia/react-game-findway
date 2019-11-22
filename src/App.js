@@ -7,7 +7,6 @@ import RIGHTArrow from './images/right.png';
 import lockImage from "./images/lock.png";
 import skullImage from "./images/skull.jpg";
 import Draggable from "react-draggable";
-import superman from "./images/superman.png";
 import finishIcon from "./images/finish.png";
 import Congratulations from "./images/Congratulations.gif";
 import GameOver from "./images/gameover.jpg";
