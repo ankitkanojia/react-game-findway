@@ -33,7 +33,8 @@ class App extends React.Component {
       blockPostitions: [1, 11, 10, 14, 15, 16, 17, 20, 30, 40, 35, 39, 45, 55, 36, 46, 56, 65, 75, 84, 85, 94, 95],
       skullPositions: [23, 24, 25, 33, 34, 44, 57, 58, 78, 79, 80, 82, 90, 92, 96],
       currentBlock: 309,
-      finishBlock: 22
+      finishBlock: 22,
+      paddingSize : 0
     };
   }
 
@@ -56,7 +57,8 @@ class App extends React.Component {
   componentDidMount() {
     this.setState({
       leftRightMove : this.refs["moveboxes1"].getBoundingClientRect().width,
-      topDownMove : this.refs["moveboxes1"].getBoundingClientRect().height
+      topDownMove : this.refs["moveboxes1"].getBoundingClientRect().height,
+      paddingSize : (this.refs["gamerow"].getBoundingClientRect().height - this.refs["board"].getBoundingClientRect().height )/ 2
     });
     document.addEventListener("keydown", this.handleKeyDown);
   }
@@ -202,11 +204,11 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="container">
-          <div className="row">
+          <div className="row" ref="gamerow">
             {this.state.isGameFinish && <div className="col-md-12 text-center"><img className="Congratulations" alt="Congratulations" src={Congratulations} /></div>}
             <div className="col-md-8 text-center d-flex justify-content-center align-items-center pink">
               {!this.state.isGameOver &&
-                <div className="w-100" style={{ backgroundColor: "#808080" , borderRadius : 5 , position : "relative" }}>
+                <div ref="board" className="w-100" style={{ backgroundColor: "#808080" , borderRadius : 5 , position : "relative" }}>
                   {[...Array(15)].map((data, index) => {
                     return <div className="d-flex" key={index}>
                       {[...Array(22)].map((sdata, sindex) => {
@@ -234,9 +236,9 @@ class App extends React.Component {
                 </div>
               }
             </div>
-            <div className="col-md-4 purple d-flex">
-              <div class="">
-                <div className="d-flex col-12 align-items-start justify-content-center h-75 p-5">
+            <div className="col-md-4 purple d-flex" style={{paddingTop : this.state.paddingSize , paddingBottom : this.state.paddingSize}}>
+              <div class="row">
+                <div className="d-flex col-12 justify-content-center align-items-start h-75">
                   <div className="h-100">
                     <div className="arrowbox">
                       <div style={{ textAlign: "center", width: "100%" }}>
@@ -262,69 +264,6 @@ class App extends React.Component {
           </div>
         </div>
       </div>
-      // <div className="App">
-      //   <div className="container">
-      //     {this.state.isGameFinish  && <div className="row"><div className="col-md-12 text-center"><img className="Congratulations" src={Congratulations} /></div></div>}
-      //     <div className="row">
-      //       {this.state.isGameOver && <div className="col-md-9" style={{ padding: 5 }}>
-      //         <img width="100%" src={GameOver} />
-      //         </div>}
-      //       {!this.state.isGameOver &&
-      //         <div className="col-md-9" style={{ backgroundColor: "#808080", padding: 5 }}>
-      //           {[...Array(15)].map((data, index) => {
-      //             return <div className="d-flex" key={index}>
-      //               {[...Array(22)].map((sdata, sindex) => {
-      //                 counter = counter + 1;
-      //                 let currentImage = "";
-      //                 if (this.state.blockPostitions.indexOf(counter) > -1) {
-      //                   currentImage = lockImage;
-      //                 }
-      //                 else if (this.state.finishBlock === counter) {
-      //                   currentImage = finishIcon;
-      //                   return <div id={"box" + counter} key={counter} style={{ borderRadius: 5, border: "1px solid #000", height: 35, width: 20, backgroundSize: "35px 35px", backgroundImage: "url(" + currentImage + ")", backgroundPosition: "center center", backgroundRepeat: "no-repeat" }} className="spacingbox flex-fill">&nbsp;</div>
-      //                 }
-      //                 else if (this.state.skullPositions.indexOf(counter) > -1) {
-      //                   currentImage = skullImage;
-      //                 }
-      //                 return <div id={"box" + counter} key={counter} style={{ borderRadius: 5, border: "1px solid #000", height: 35, width: 20, backgroundSize: "30px 25px", backgroundImage: "url(" + currentImage + ")", backgroundPosition: "center center", backgroundRepeat: "no-repeat" }} className="spacingbox flex-fill">&nbsp;</div>
-      //               })}
-      //             </div>
-      //           })}
-      //           <Draggable disabled={true} position={this.state.controlledPosition} >
-      //             <div className="itemBoxImage" style={{ borderRadius: 5, height: 32, width: 36, border: "2px solid red", backgroundSize: "25px 30px", backgroundImage: "url(" + superman + ")", backgroundPosition: "center center", backgroundRepeat: "no-repeat", zIndex: "55", position: "absolute", bottom: 6, left: 6 }} ref="itemBoxImage" className="itemBox">
-      //               &nbsp;
-      //            </div>
-      //           </Draggable>
-      //         </div>
-      //       }
-      //       <div className="col-md-3">
-      //         <div className="row">
-      //           <div className="col-md-12">
-      //             <div className="h-100">
-      //               <div className="arrowbox">
-      //                 <div style={{ textAlign: "center", width: "100%" }}>
-      //                   <img onClick={() => this.positionChange("up")} width="50" src={UPArrow} alt="UPArrow" style={{ marginTop: "10" }} /><br />
-      //                   <img onClick={() => this.positionChange("left")} width="50" src={LEFTArrow} alt="LEFTArrow" />&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
-      //                   <img onClick={() => this.positionChange("right")} width="50" src={RIGHTArrow} alt="RIGHTArrow" /><br />
-      //                   <img onClick={() => this.positionChange("down")} width="50" src={DOWNArrow} alt="DOWNArrow" style={{ marginTop: "10" }} />
-      //                 </div>
-      //               </div>
-      //               <br />
-      //               <div className="text-center">
-      //                   {!this.state.isGameStart && <button onClick={this.startGame} className="startbtn">START GAME</button> }
-      //                   {this.state.isGameStart && !this.state.isGameOver && <button className="timerButton">{"0" + this.state.mins + " : " + this.state.seconds}</button>}
-      //                   {this.state.isGameOver && <button onClick={this.resetAll} className="restartButton">RESTART GAME</button>}
-      //               </div>
-      //             </div>
-      //           </div>
-      //           <div className="col-md-12">
-      //             <img width="100%" src={Notes} alt="notes" />
-      //           </div>
-      //         </div>
-      //       </div>
-      //     </div>
-      //   </div>
-      // </div>
     );
   }
 }
