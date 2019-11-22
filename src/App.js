@@ -12,6 +12,7 @@ import finishIcon from "./images/finish.png";
 import Congratulations from "./images/Congratulations.gif";
 import GameOver from "./images/gameover.jpg";
 import Directional from "./images/direction.png";
+import Notes from "./images/notes.png";
 
 class App extends React.Component {
   constructor(props) {
@@ -255,16 +256,8 @@ class App extends React.Component {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-12 d-inline-block">
-                  <img width="70" src={Directional} />
-                  <label style={{color : "#FFF", fontSize : 12, marginLeft :5}}>FOR MOVE</label>
-                  <br />
-                  <img width="30" src={lockImage} />
-                  <label style={{color : "#FFF", fontSize : 12, marginLeft :5}}>CAN NOT CROSS WHEN LOCK FOUND</label>
-                  <br />
-                  <br />
-                  <img width="30" src={skullImage} />
-                  <label style={{color : "#FFF", fontSize : 12, marginLeft :5}}>DO NOT TOUCH SKULL</label>
+                <div className="col-md-12">
+                  <img width="100%" src={Notes} alt="notes" />
                 </div>
               </div>
             </div>
