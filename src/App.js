@@ -217,6 +217,7 @@ class App extends React.Component {
         <div className="container">
           <div className="row" ref="gamerow">
             {this.state.isGameFinish && <div className="col-md-8 text-center d-flex justify-content-center align-items-center pink"><img className="Congratulations" alt="Congratulations" src={Congratulations} /></div>}
+            {this.state.isGameOver && <div className="col-md-8 text-center d-flex justify-content-center align-items-center pink" ><img style={{border : "2px solid #FFF" , borderRadius : "5px"}} className="GameOver" alt="Game Over" src={GameOver} /></div>}
             {!this.state.isGameOver && !this.state.isGameFinish && 
               <div className="col-md-8 text-center d-flex justify-content-center align-items-center pink">
                 <div ref="board" className="text-center" style={{ width : "730px", backgroundColor: "#808080" , borderRadius : 5 , position : "relative" }}>
