@@ -29,12 +29,24 @@ class App extends React.Component {
       rightCounter: 0,
       topDownMove: 0,
       leftRightMove: 0,
-      blockPostitions: [2,4,6,8,10,12,14,16,18,20,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74,76,78,80,82,84,86,88,90,92,94,96,98,100,102,104,106,108,110,112,114,116,118,120,122,124,126,128,130,132,134,136,138,140,142,144,146,148,150,152,154,156,158,160,162,164,166,168,170,172,174,176,178,180,182,184,186,188,190,192,194,196,198,200,202,204,206,208,210,212,214,216,218,220,222,224,226,228,230,232,234,236,238,240,242,244,246,248,250,252,254,256,258,260,262,264,266,268,270,272,274,276,278,280,282,284,286,288,290,292,294,296,298,300,302,304,306,308,310,312,314,316,318,320,322,324,326,328,330],
-      skullPositions: [1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63,65,67,69,71,73,75,77,79,81,83,85,87,89,91,93,95,97,99,101,103,105,107,109,111,113,115,117,119,121,123,125,127,129,131,133,135,137,139,141,143,145,147,149,151,153,155,157,159,161,163,165,167,169,171,173,175,177,179,181,183,185,187,189,191,193,195,197,199,201,203,205,207,209,211,213,215,217,219,221,223,225,227,229,231,233,235,237,239,241,243,245,247,249,251,253,255,257,259,261,263,265,267,269,271,273,275,277,279,281,283,285,287,289,291,293,295,297,299,301,303,305,307,311,313,315,317,319,321,323,325,327,329],
+      skullPositions: [2, 18, 24, 26, 36, 42, 43 , 46,
+        58, 60, 68, 65, 70, 72, 76, 78, 80, 84, 86, 90, 94,
+        102, 104, 106, 108, 110, 112, 120, 122, 126, 130, 134, 136, 138, 140,
+        148, 150, 156, 160, 164, 166, 170, 172, 178, 182,
+        184, 186, 190, 196, 204, 210, 214, 216, 218, 222, 224, 226,
+        228, 230, 232, 234, 236, 238, 240, 254, 256, 278,
+        280, 282, 284, 286, 288, 290, 292, 294, 296, 298, 300, 302, 304, 306, 308, 318],
+      blockPostitions: [1, 7, 8, 9, 10, 17, 23, 27, 35, 41, 45
+        , 51, 57, 59, 61, 67, 69, 71, 73, 75, 77, 79, 85, 89, 91, 95,
+        107, 111, 119, 121, 123, 137, 139,
+        145, 147, 149, 153, 155, 159, 163, 165, 167, 171, 173, 177, 179, 181, 185,
+        197, 203, 215, 217, 219, 223, 225, 227, 229, 233, 235, 237, 239,
+        249, 255, 297, 299,
+        301, 303, 305, 307, 317, 319],
       currentBlock: 309,
       finishBlock: 22,
-      paddingSize : 0,
-      rotate : 0
+      paddingSize: 0,
+      rotate: 0
     };
   }
 
@@ -51,15 +63,15 @@ class App extends React.Component {
       downCounter: 0,
       rightCounter: 0,
       controlledPosition: { x: 0, y: 0 },
-      rotate : 0
+      rotate: 0
     })
   }
 
   componentDidMount() {
     this.setState({
-      leftRightMove : this.refs["moveboxes1"].getBoundingClientRect().width,
-      topDownMove : this.refs["moveboxes1"].getBoundingClientRect().height,
-      paddingSize : (this.refs["gamerow"].getBoundingClientRect().height - this.refs["board"].getBoundingClientRect().height )/ 2
+      leftRightMove: this.refs["moveboxes1"].getBoundingClientRect().width,
+      topDownMove: this.refs["moveboxes1"].getBoundingClientRect().height,
+      paddingSize: (this.refs["gamerow"].getBoundingClientRect().height - this.refs["board"].getBoundingClientRect().height) / 2
     });
     document.addEventListener("keydown", this.handleKeyDown);
   }
@@ -184,7 +196,7 @@ class App extends React.Component {
         downCounter: 0,
         rightCounter: 0,
         currentBlock: 309,
-        rotate : 0
+        rotate: 0
       });
       return;
     }
@@ -217,10 +229,10 @@ class App extends React.Component {
         <div className="container">
           <div className="row" ref="gamerow">
             {this.state.isGameFinish && <div className="col-md-8 text-center d-flex justify-content-center align-items-center pink"><img className="Congratulations" alt="Congratulations" src={Congratulations} /></div>}
-            {this.state.isGameOver && <div className="col-md-8 text-center d-flex justify-content-center align-items-center pink" ><img style={{border : "2px solid #FFF" , borderRadius : "5px"}} className="GameOver" alt="Game Over" src={GameOver} /></div>}
-            {!this.state.isGameOver && !this.state.isGameFinish && 
+            {this.state.isGameOver && <div className="col-md-8 text-center d-flex justify-content-center align-items-center pink" ><img style={{ border: "2px solid #FFF", borderRadius: "5px" }} className="GameOver" alt="Game Over" src={GameOver} /></div>}
+            {!this.state.isGameOver && !this.state.isGameFinish &&
               <div className="col-md-8 text-center d-flex justify-content-center align-items-center pink">
-                <div ref="board" className="text-center" style={{ width : "730px", backgroundColor: "#808080" , borderRadius : 5 , position : "relative" }}>
+                <div ref="board" className="text-center" style={{ width: "730px", backgroundColor: "#808080", borderRadius: 5, position: "relative" }}>
                   {[...Array(15)].map((data, index) => {
                     return <div className="d-flex" key={index}>
                       {[...Array(22)].map((sdata, sindex) => {
@@ -240,15 +252,15 @@ class App extends React.Component {
                       })}
                     </div>
                   })}
-                    {this.state.isGameStart && <Draggable disabled={true} position={this.state.controlledPosition} >
-                      <div className="dragBox" style={{width  : this.state.leftRightMove}}>
-                         <div className="itemBoxImage"  style={{transform: "rotate(" + this.state.rotate + "deg)" ,width  : this.state.leftRightMove}}></div>
-                      </div>
+                  {this.state.isGameStart && <Draggable disabled={true} position={this.state.controlledPosition} >
+                    <div className="dragBox" style={{ width: this.state.leftRightMove }}>
+                      <div className="itemBoxImage" style={{ transform: "rotate(" + this.state.rotate + "deg)", width: this.state.leftRightMove }}></div>
+                    </div>
                   </Draggable>}
                 </div>
               </div>
             }
-            <div className="col-md-4 purple d-flex" style={{paddingTop : this.state.paddingSize , paddingBottom : this.state.paddingSize}}>
+            <div className="col-md-4 purple d-flex" style={{ paddingTop: this.state.paddingSize, paddingBottom: this.state.paddingSize }}>
               <div class="row">
                 <div className="d-flex col-12 justify-content-center align-items-start h-75">
                   <div className="h-100">
